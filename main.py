@@ -22,6 +22,9 @@ def main() -> int:
     if not text.strip():
         print("entry is only whitespace", file=sys.stderr)
         return 1
+    if "\n" in text or "\r" in text:
+        print("entry must be a single line", file=sys.stderr)
+        return 1
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8", newline="") as f:
         f.write(text)
